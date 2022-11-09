@@ -1,7 +1,7 @@
 /* 
  * COMP201 - Assignment2
  * 
- * <Please put your name and userid here>
+ * <Abdurrahman Çağlayan>
  * 
  * main.c - Source file with your solutions to the assignment.
  *
@@ -20,7 +20,50 @@
 bool isValidIP(char input[]) {
     // Your code here
 
-    return true;
+    char* res;
+    res = strtok(input, ".");
+    int is_init = 1;
+    int dot_num = 0;
+    int int_num = 0;
+    int is_great = 0;
+
+    while(res) {
+      
+        dot_num++;
+        int_num++;
+        for (int i = 0; res[i]!= '\0'; i++){
+            if (isdigit(res[i]) == 0){
+                // printf("no digit %d\n",res[i]);
+                is_init = 0;
+            }
+        }
+
+        if(is_init==1){
+            char* p = res;
+            if(strtoul(p, &p, 10)<=255){}
+
+            else{
+                // printf("great num");
+                is_great = 1;
+            }
+
+        }
+        // else{
+        //     printf("no\n");}       
+        // printf("%s\n", res);
+        res = strtok(NULL, ".");
+    
+    }
+
+    // printf("dot %d, int %d, is great %d, is init %d ",dot_num,int_num,is_great,is_init);
+    
+    if(dot_num==4 & int_num==4 & is_great==0 & is_init==1){
+        return true;
+        // printf("\nvalid ip");
+    }
+    else{
+        return false;}
+
 }
 
 char *toHex(char input[]) {
@@ -30,10 +73,36 @@ char *toHex(char input[]) {
 }
 
 bool checkQuery(char query[], char IP[]) {
-    // Your code here
+    
+    char* res;
+    char* res1;
+    res = strtok(query, ".");
+    res1 = strtok(IP,".");
 
-    return false;
+    int is_tr = 1;
+
+    while(res) {
+        if(strcmp(res,res1)==0){
+        }else{
+            is_tr = 0;
+        }
+
+
+    res = strtok(NULL, ".");
+    res1 = strtok(NULL, ".");
     }
+
+    
+
+    if(is_tr == 1 ){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+}
+
 
 char *modifyIP(char search_num[], char IP[],char new_num[]) {
     // Your code here
